@@ -8,9 +8,9 @@ public interface SubscribeRepository extends JpaRepository<Subscribe, Integer> {
 
     @Modifying  //데이터를 변경해주는 쿼리는 이걸 붙여줘야함 INSERT, DELETE, UPDATE
     @Query(value = "INSERT INTO subscribe(fromUserId, toUserId, createDate) VALUES(:fromUserId, :toUserId, now())", nativeQuery = true)
-    int mSubscribe(int fromUserId, int toUserId);
+    void mSubscribe(int fromUserId, int toUserId);
 
     @Modifying
     @Query(value = "DELETE FROM subscribe WHERE fromUserId=:fromUserId AND toUserId=:toUserId", nativeQuery = true)
-    int mUnSubscribe(int fromUserId, int toUserId);
+    void mUnSubscribe(int fromUserId, int toUserId);
 }
