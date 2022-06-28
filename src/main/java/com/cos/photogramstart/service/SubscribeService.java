@@ -23,7 +23,7 @@ public class SubscribeService {
     }
 
     @Transactional
-    public void 구독취소하기기(int fromUserId, int toUserId) {
+    public void 구독취소하기(int fromUserId, int toUserId) {
         subscribeRepository.mUnSubscribe(fromUserId, toUserId);
     }
 }
