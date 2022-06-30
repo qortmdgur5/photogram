@@ -24,7 +24,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //번호 증가 전략이 데이터베이스를 따라간다. 즉, 데이터베이스에 따라 따로 설정해줄필요가없다.
     private int id;
 
-    @Column(length = 20, unique = true)  //아이디 중복을 체크하자 DB에서 같은 아이디는 들어올 수 없다.
+    @Column(length = 100, unique = true)  //아이디 중복을 체크하자 DB에서 같은 아이디는 들어올 수 없다.
     private String username;
     @Column(nullable = false)
     private String password;
@@ -44,7 +44,7 @@ public class User {
     //User를 Select할 때 해당 User id로 등록된 image들을 다 가져와
     //LAZY = user를 Select할 때 해당 User id로 등록된 image들을 가져오지마 - 대신 getImages() 함수가 호출될 때 가져와
     //EAGER = User를 Select할 때 해당 User id로 등록된 image들을 전부 Join해서 가져와!!
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)   //LAZY 전략을 이용하는 이유는 유저를 가져올때마다 자동으로 모든 이미지들을 가져오면 서버에 무리야
     @JsonIgnoreProperties({"user"})
     private List<Image> images;
 
